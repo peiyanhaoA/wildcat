@@ -2,7 +2,10 @@
     <router-view id="app"></router-view>
 </template>
 <script>
+
 import '../src/style/common.css';
+import 'assets/iconfont/iconfont.css';
+
 import '../node_modules/vuetify/dist/vuetify.min.css';
 export default {
     mounted:function (){

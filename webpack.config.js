@@ -1,5 +1,8 @@
   const path = require('path');
+  const webpack = require('webpack');
   const ExtractTextPlugin = require("extract-text-webpack-plugin");
+  
+  
   module.exports = {
       entry: './src/main.js',
       devtool: 'inline-source-map',
@@ -19,14 +22,10 @@
               {
                   test: /\.(png|svg|jpg|gif)$/,
                   use: [
-                      'file-loader',
-                      'url-loader'
+                      'file-loader'
                   ]
               },
-              {
-                  test: /\.json$/,
-                  loader: 'json-loader'
-              },
+
               {
                   test: /\.(woff|woff2|eot|ttf|otf)$/,
                   use: [
@@ -38,7 +37,26 @@
                   use: [
                       'vue-loader'
                   ]
-              }
+              },
+			  {
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use:[
+					'babel-loader'
+				]
+			}
           ]
-      }
+      },
+	  
+	  resolve: {
+        alias: {
+            'vue': 'vue/dist/vue.esm.js',
+            'assets': path.resolve(__dirname, 'assets')
+        }
+    },
+	
+	plugins: [
+        new webpack.ProvidePlugin({
+        })
+    ]
   };
