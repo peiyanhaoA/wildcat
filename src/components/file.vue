@@ -1,15 +1,13 @@
 <template>
-  <div id="file">
+  <div id="file" @dblclick="leave">
+    <v-container fluid>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card class="cards" id="test">
-          <v-list two-line subheader>
+        <v-card class="cards" >
+          <v-list id="test" two-line subheader>
             <v-list-tile avatar v-for="item in items" v-bind:key="item.title" @click="" class="site">
-              <v-checkbox v-show="isShowCheckbox"
-                        v-model="item.ex"
-                        color="secondary"
-                        hide-details></v-checkbox>
-              <v-list-tile-avatar :class="{ active:'isShowCheckbox' }">
+              <v-checkbox id="checkbox" v-show="isShowCheckbox" v-model="item.ex" color="secondary" hide-details></v-checkbox>
+              <v-list-tile-avatar>
                 <v-icon v-bind:class="[item.iconClass]" >{{ item.icon }}</v-icon>
               </v-list-tile-avatar>
               <v-list-tile-content>
@@ -26,6 +24,14 @@
         </v-card>
       </v-flex>
     </v-layout>
+    </v-container>
+
+  <div id="fileFooter" v-show="isShowCheckbox">
+    <div id="share" class="iconfont icon-fenxiang"></div>
+    <div id="delete" class="iconfont icon-shanchu1" @click="del"></div>
+  </div>
+
+
   </div>
 </template>
 <script>
@@ -33,22 +39,42 @@ export default {
   data () {
       return {
          items: [
-          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Photos', subtitle: 'Jan 9, 2014', ex: true },
-          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Recipes', subtitle: 'Jan 17, 2014' },
-          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Work', subtitle: 'Jan 28, 2014' }
+          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Photos', subtitle: 'Jan 9, 2014', ex: false },
+          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Recipes', subtitle: 'Jan 17, 2014', ex: false },
+          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Work', subtitle: 'Jan 28, 2014', ex: false },
+          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Photos', subtitle: 'Jan 9, 2014', ex: false },
+          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Recipes', subtitle: 'Jan 17, 2014', ex: false },
+          { icon: 'folder', iconClass: 'grey lighten-1 white--text', title: 'Work', subtitle: 'Jan 28, 2014', ex: false }
         ],
         isShowCheckbox: false
       }
     },
     mounted: function(){
-      var hammertime = new Hammer(document.getElementById("test"));
-      hammertime.on("press", function (ev) {
-          //控制台输出
-          ev.preventDefault();
-         this.isShowCheckbox = true;
-      });
+      var test = document.getElementById("test");
+      var that = this;
+      if(test.childNodes.length > 0){
+        test.childNodes.forEach(function(element,index) {
+          var hammertime = new Hammer(element);
+          hammertime.on("press", function (ev) {
+            that.items[index].ex = true;
+            that.isShowCheckbox = true;
+          });
+        });
+      }
     },
-    
+    methods: {
+      del: function(){
+        var that = this;
+        this.items.forEach(function(e,index){
+          if(that.items[index].ex){
+            that.items.splice(index,1)
+          }
+        })
+      },
+      leave: function(){
+        this.isShowCheckbox = false
+      }
+    }
 
 }
 </script>
@@ -63,8 +89,27 @@ export default {
   .input-group__details{
     display: none ! important;
   }
-  .active{
-    margin-left: -20px;
+  #checkbox{
+    width: 30px;
+  }
+  #fileFooter{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+  }
+  #fileFooter>.iconfont{
+    width: 50%;
+    height: 50px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 50px;
   }
 </style>
 
