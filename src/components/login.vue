@@ -9,6 +9,15 @@
          <input type="text" placeholder="密码" class="password">
          <input type="button" value="登录" class="login" @click="Login">
      </div>
+     <div>
+         <span>注册账号</span>
+         <span>忘记密码</span>
+     </div>
+     <div>
+         <p>第三方登录</p>
+         <a href="#"></a>
+         <a href="# "></a>
+     </div>
   </div>
 </template>
 <script>

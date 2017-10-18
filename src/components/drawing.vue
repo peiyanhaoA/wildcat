@@ -5,7 +5,6 @@
         <div id="buttons">
             <input type="color" id="lineColor">
             <input type="range" id="lineWidth" value="3" min="1" max="16" step="1">
-            <button @click="drawLine">画笔</button>
             <button @click="revoked">撤销</button>
             <button @click="clear">清除</button>
             <!-- <button @click="save">保存</button> -->
@@ -32,21 +31,21 @@ class Draw {
             endY: 0
         }
     }
-    // 
+    // 初始化
     init() {
         var that = this;
         this.canvas.addEventListener('touchstart', function(event) {
             that.drawBegin(event)
         })
         this.canvas.addEventListener("touchmove",function(event){
+            event.preventDefault();
             that.drawing(event)
         })
         this.canvas.addEventListener('touchend', function(event) {  
             that.drawEnd();
-            that.copy();
         })
     }
-    // 
+    // 开始划线
     drawBegin(e) {
         var that = this;
         this.ctx.strokeStyle = document.getElementById('lineColor').value;
@@ -58,7 +57,7 @@ class Draw {
             e.changedTouches[0].clientY - this.stage_info.top
         )
     }
-    // 
+    // 划线
     drawing(e) {
         this.ctx.lineTo(
             e.changedTouches[0].clientX - this.stage_info.left,
@@ -66,18 +65,18 @@ class Draw {
         )
         this.ctx.stroke()
     }
-    // 
+    // 划线结束
     drawEnd(e) {
         var that = this;
         this.ctx.lineWidth = 0;
-        
+        that.copy();
     }
-    // 
+    // 复制当前画布
     copy(){
         var canvasImg = this.ctx.getImageData(0,0,300,300);
         canvasImage.push(canvasImg);
     }
-    // 
+    // 撤销
     revoked() {
         if(canvasImage.length > 1){
             canvasImage.pop();
@@ -86,7 +85,7 @@ class Draw {
             this.ctx.putImageData(canvasImage[canvasImage.length -1],0,0);
         }
     }
-    // 
+    // 清除画布
     clear() {
         this.ctx.clearRect(0, 0, 300, 300)
     }
@@ -109,9 +108,6 @@ export default {
         draw.copy();
     },
     methods:{
-        drawLine: function (){
-            draw.init();
-        },
         clear:function(){
             draw.clear();
         },
