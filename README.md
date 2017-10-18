@@ -1,2 +1,3 @@
 # wildcat
-A software to improve the efficiency of meeting and office.
+A video conferencing software based on Nodejs and webRTC.
+一款基于Nodejs和webRTC的视频会议软件。
