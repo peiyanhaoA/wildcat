@@ -1,0 +1,27 @@
+{
+  "name": "wildcat",
+  "version": "1.0.0",
+  "description": "A video conferencing software based on Nodejs and webRTC",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhibiao/wildcat.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "WebRTC"
+  ],
+  "author": "zhibiao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhibiao/wildcat/issues"
+  },
+  "homepage": "https://github.com/zhibiao/wildcat#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.3"
+  }
+}
