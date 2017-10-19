@@ -6,9 +6,11 @@ import Vuex from 'vuex';
 import store from './store/store';
 import jquery from 'jquery';
 import axios from 'axios';
-Vue.use(Vuetify);
+import $ from 'jquery'
+
 Vue.use(Vuex);
 Vue.use(Vuetify);
+
 Vue.prototype.$ajax=axios;
 
 var vm = new Vue({

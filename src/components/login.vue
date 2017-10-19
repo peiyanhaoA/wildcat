@@ -9,14 +9,14 @@
          <input type="text" placeholder="密码" class="password">
          <input type="button" value="登录" class="login" @click="Login">
      </div>
-     <div>
-         <span>注册账号</span>
-         <span>忘记密码</span>
+     <div id="registeredAndForget">
+         <span class="registered">注册账号</span>
+         <span class="forget" @click="forgetPassword">忘记密码</span>
      </div>
-     <div>
+     <div id="thirdLogin">
          <p>第三方登录</p>
-         <a href="#"></a>
-         <a href="# "></a>
+         <a href="#" class="iconfont icon-github"></a>
+         <a href="#" class="iconfont icon-qq1"></a>
      </div>
   </div>
 </template>
@@ -25,6 +25,9 @@ export default {
   methods:{
       Login: function () {
           this.$router.push('/home')
+      },
+      forgetPassword: function(){
+          this.$router.push('/forgetPassword')
       }
   }
 }
@@ -71,6 +74,36 @@ export default {
         border-radius: 4px;
         letter-spacing: 7px;
     }
+    #registeredAndForget{
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        margin-top: 15px;
+        letter-spacing: 1px;
+        color: #4169E1 ;
+    }
+    .registered{
+        padding-right: 15px;
+        border-right: 1px solid #ccc;
+    }
+    .forget{
+        padding-left: 15px;
+    }
+    #thirdLogin{
+        width:100%;
+        text-align: center;
+        margin-top: 30px;
+        font-size: 15px;
+    }
+    #thirdLogin .iconfont{
+        font-size: 26px;
+        border-radius: 50%;
+        margin-left: 8px;
+    }
+    #thirdLogin p{
+        margin-bottom: 8px;
+    }
 </style>
 
 
+ 
