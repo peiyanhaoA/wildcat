@@ -3,83 +3,32 @@
       <search  @transfer="enter"></search>
       <div class="part">
         <div class="part-title">
-          <span>北京仁光科技有限公司</span>
-          <!-- <span>
+          <span @click="tab='apartment'">仁光科技</span>
+          <span v-for="post in posts">
             <i class="iconfont icon_c">&#xe655;</i>
-            <i>技术中心</i>
-          </span> -->
+            <i>{{post}}</i>
+          </span>
         </div>
-
-       <!-- <v-card class="contacts">
-        <v-list>
-          <v-list-group v-for="item in items" :value="item.active" v-bind:key="item.title">
-            <v-list-tile slot="item" @click="">
-              <v-list-tile-action>
-                <v-icon>{{ item.action }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-              </v-list-tile-content>
-              <v-list-tile-action>
-                <v-icon>keyboard_arrow_down</v-icon>
-              </v-list-tile-action>
-            </v-list-tile>
-            <v-list-tile v-for="subItem in item.items" v-bind:key="subItem.title" @click="">
-              <v-list-tile-content>
-                <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-              </v-list-tile-content>
-              <v-list-tile-action>
-                <v-icon>{{ subItem.action }}</v-icon>
-              </v-list-tile-action>
-            </v-list-tile>
-          </v-list-group>
-        </v-list>
-      </v-card>        -->
+        <component :is="tab" :company="sendMsg" @transfer="getMsg"></component>
       </div>
   </div>
 </template>
 <script>
+
 import search from './public/search.vue';
+import apartment from './public/apartment.vue';
+import person from './public/person.vue';
 export default {
   data(){
     return{
-      items: [
-       {
-          action: 'local_activity',
-          title: '部门1',
-          active: true,
-          items: [
-            { title: '张三' }
-          ]
-        },
-        {
-          action: 'restaurant',
-          title: '部门2',
-          items: [
-            { title: '李四' },
-            { title: 'New American' },
-            { title: 'Sushi' }
-          ]
-        },
-        {
-          action: 'school',
-          title: '部门3',
-          items: [
-            { title: 'List Item' }
-          ]
-        },
-        {
-          action: 'directions_run',
-          title: '部门4',
-          items: [
-            { title: 'List Item' }
-          ]
-        }
-      ]
+      tab:'apartment',
+      sendMsg:null,
+      posts:[]
+      
     }
   },
   created:function(){
-   
+   this.sendMsg=this.company;
   },
   methods:{
     enter:function(name){      
@@ -95,10 +44,18 @@ export default {
         }
       }
       
+    },
+    getMsg:function(msg){
+      console.log(msg);
+      this.posts.push(msg);
+      this.tab="person";
+      
     }
   },
   components:{
-    search
+    search,
+    apartment,
+    person
   }
   
 }
@@ -112,19 +69,18 @@ export default {
 }
 .part .part-title{
   background-color: #fff;
-  padding: 15px 15px;
+  padding: 10px 15px;
   border-bottom: 1px solid #ccc;
+  color:#888;
 }
 .part .part-title .icon_c{
   margin:0 10px;
   font-size: 14px;
-  color:grey;
+  color:#ccc;
 }
-.contacts{
-  box-shadow: none;
+.font_c{
+  color:#3879d9;
 }
-.list__tile__title.tile{
-  color:#f00;
-}
+
 </style>
 

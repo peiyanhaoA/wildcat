@@ -5,18 +5,15 @@
           <span class="p-title">参会人员 1/16</span>
           <div class="lists">
             <div class="list">
-              <img src="/image/cat.jpg" alt="" class="img">
-              <!-- <div class="img"></div> -->
+              <img src="~assets/image/cat.jpg" alt="" class="img">
               <span class="name">发起者</span>
             </div>
             <div class="list" v-for="chooseuser in chooseUsers">
-              <!--<img src="../image/cat.jpg" alt="">-->
-              <div class="img"></div>
+              <img src="~assets/image/cat.jpg" class="img" alt="">
               <span class="name">{{chooseuser.name}}</span>
             </div>
 
             <div class="list">
-              <!--<img src="../image/cat.jpg" alt="">-->
               <router-link to="/choose" tag="div" class="img"><i class="iconfont icon_1">&#xe601;</i></router-link>
               <span class="name">添加</span>
             </div>
