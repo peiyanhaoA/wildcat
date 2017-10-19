@@ -6,11 +6,16 @@ import Setting from '../components/setting.vue';
 import Makeoffice from '../components/makeAppointment.vue';
 import Instantconference from '../components/instantconference.vue';
 import Meeting from '../components/meeting.vue';
-import Choose from '../components/choose.vue';
+import Choose from '../components/choose.vue'
 import Info from '../components/info.vue';
-import Start from '../components/start.vue'
-import "hammerjs";
+import Start from '../components/start.vue';
+import ForgetPassWord from '../components/forgetPassWord.vue'; // 忘记密码 输入手机号获取验证码
+import VerificationCode from '../components/verificationCode.vue'; // 填写并验证码 
+import AreaCode from '../components/areaCode.vue'; // 国家和区号
 
+
+
+import "hammerjs";
 
 // 2017/10/16 （可以删除）
 import Drawing from '../components/drawing.vue';
@@ -24,10 +29,15 @@ export default new VueRouter({
         {path: '/instantconference', component: Instantconference},//即时
         {path: '/meeting', component: Meeting},//开始开会
         {path: '/choose', component: Choose},//选择参会人员
-        {path: '/setting', component: Setting},
-        {path: '/info', component: Info},
+        {path: '/setting', component: Setting}, // 设置个人信息
+        {path: '/info', component: Info}, // 消息
         {path: '/start', component: Start},
-        
-        {path: '/drawing', component: Drawing}
+        {path: '/forgetPassWord', component: ForgetPassWord},  // 忘记密码 输入手机号获取验证码
+        {path: '/verificationCode', component: VerificationCode},  // 填写并验证码
+        {path: '/areaCode', component: AreaCode},
+
+
+
+        {path: '/drawing', component: Drawing} // 画板
     ]
 })

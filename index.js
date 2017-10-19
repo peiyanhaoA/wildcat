@@ -4,6 +4,7 @@ const fs = require('fs');
 const express = require('express');
 const app = express();  
 app.use(express.static('dist'));
+app.use(express.static('assets'));
 
 const server = https.createServer( {
 	key: fs.readFileSync('ssl-key/key.pem'),
