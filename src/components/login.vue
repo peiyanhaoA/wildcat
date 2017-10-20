@@ -5,12 +5,12 @@
           仁光科技
       </div>
      <div id="loginContent">
-         <input type="text" placeholder="企业邮箱" class="username">
+         <input type="text" placeholder="手机号" class="username">
          <input type="text" placeholder="密码" class="password">
          <input type="button" value="登录" class="login" @click="Login">
      </div>
      <div id="registeredAndForget">
-         <span class="registered">注册账号</span>
+         <span class="registered" @click="register">注册账号</span>
          <span class="forget" @click="forgetPassword">忘记密码</span>
      </div>
      <div id="thirdLogin">
@@ -28,6 +28,9 @@ export default {
       },
       forgetPassword: function(){
           this.$router.push('/forgetPassword')
+      },
+      register: function(){
+          
       }
   }
 }
