@@ -12,6 +12,7 @@ import Start from '../components/start.vue';
 import ForgetPassWord from '../components/forgetPassWord.vue'; // 忘记密码 输入手机号获取验证码
 import VerificationCode from '../components/verificationCode.vue'; // 填写并验证码 
 import AreaCode from '../components/areaCode.vue'; // 国家和区号
+import Register from '../components/register.vue'
 
 
 
@@ -35,6 +36,7 @@ export default new VueRouter({
         {path: '/forgetPassWord', component: ForgetPassWord},  // 忘记密码 输入手机号获取验证码
         {path: '/verificationCode', component: VerificationCode},  // 填写并验证码
         {path: '/areaCode', component: AreaCode},
+        {path: '/register', component: Register},
 
 
 

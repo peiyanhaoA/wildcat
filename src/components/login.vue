@@ -30,7 +30,7 @@ export default {
           this.$router.push('/forgetPassword')
       },
       register: function(){
-          
+          this.$router.push('/register')
       }
   }
 }

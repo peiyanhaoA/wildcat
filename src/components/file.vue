@@ -1,9 +1,9 @@
 <template>
-  <div id="file" @dblclick="leave">
-    <v-container fluid>
+  <div id="file">
+    <v-container fluid class="wrap">
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card class="cards" >
+        <v-card class="cards">
           <v-list id="test" two-line subheader>
             <v-list-tile avatar v-for="item in items" v-bind:key="item.title" @click="" class="site">
               <v-checkbox id="checkbox" v-show="isShowCheckbox" v-model="item.ex" color="secondary" hide-details></v-checkbox>
@@ -29,6 +29,7 @@
   <div id="fileFooter" v-show="isShowCheckbox">
     <div id="share" class="iconfont icon-fenxiang"></div>
     <div id="delete" class="iconfont icon-shanchu1" @click="del"></div>
+    <div id="cancel" class="iconfont icon-quxiao" @click="cancel"></div>
   </div>
 
 
@@ -71,7 +72,7 @@ export default {
           }
         })
       },
-      leave: function(){
+      cancel: function(){
         this.isShowCheckbox = false
       }
     }
@@ -105,11 +106,14 @@ export default {
     background-color: white;
   }
   #fileFooter>.iconfont{
-    width: 50%;
+    width: 33.33%;
     height: 50px;
     font-size: 40px;
     text-align: center;
     line-height: 50px;
+  }
+  .wrap{
+    padding: 0;
   }
 </style>
 

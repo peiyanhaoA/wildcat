@@ -19,8 +19,8 @@
       </div>
 
       <div id="button" v-show="btnsHide">
-        <input type="button" value="保存" class="save btns">
-        <input type="button" value="退出" class="singOut btns">
+        <input type="button" value="保存" class="save btns" @click="save">
+        <input type="button" value="退出" class="singOut btns" @click="singOut">
       </div>
     </div>
   </div>
@@ -44,6 +44,12 @@ export default {
   methods:{
     openFileIIs:function(filename){
      console.log(123)
+    },
+    save: function(){
+      this.$router.push('/home')
+    },
+    singOut: function(){
+      this.$router.push('/')
     }
   }
 }

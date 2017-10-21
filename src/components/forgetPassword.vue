@@ -3,8 +3,8 @@
       <my-twoheader :text="text"></my-twoheader>
       <div id="forgetPassWord">
           <div id="countryAndArea" @click="area">
-              <span class="area">+86</span>
-              <span class="country">中国</span>
+              <span class="area">+{{ this.$store.state.areacode }}</span>
+              <span class="country">{{ this.$store.state.country }}</span>
           </div>
           <input type="tel" name="user_tel" id="userTel" placeholder="请输入手机号码">
           <input type="button" id="nextStep" value="下一步" @click="verificationCode">

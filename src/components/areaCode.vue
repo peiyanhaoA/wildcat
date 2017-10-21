@@ -2,7 +2,7 @@
   <div>
       <my-twoheader :text="text"></my-twoheader>
       <div id="areaCodeContent">
-        <p v-for="item in items" id="areaList">
+        <p v-for="item in items" id="areaList" @click="getCurrentElement">
             <span>{{ item[1] }}</span>
             <span>{{ item[2] }}</span>
         </p>
@@ -16,33 +16,39 @@ export default {
   data(){
       return {
           text: "国家和区号",
-          items: []
+          items: this.$store.state.areas
       }
   },
   components: {
       myTwoheader
   },
+  methods:{
+      getCurrentElement:function(e){
+          this.$store.dispatch('fromAreaCode',{
+              country: e.currentTarget.firstChild.innerText,
+              areacode: e.currentTarget.lastChild.innerText
+          })
+          this.$router.push('/forgetPassWord')
+      }
+  },
+  watch:{
+      $router (to, from){
+          console.log(to)
+          console.log(from)
+      }
+  },
   mounted: function () {
-      var that = this;
-      $.ajax({
-          type: 'get',
-          url: '/data/countryAndAreaCode.json',
-          success: function(req){
-              req.forEach(function(element) {
-                  var e = element.split('-');
-                  that.items.push(e)
-              });
-
-          }
-      })
-      var areaCodeContent = document.getElementById('areaCodeContent');
-      areaCodeContent.addEventListener('touchmove',function(){
-          areaCodeContent.style.transform = 'translateY(10px)'
-      })
-  }
+     this.$store.dispatch('saveForm')
+  },
+  
 }
 </script>
 <style scoped>
+    #areaCodeContent{
+        width: 100%;
+        height: calc(100% - 44px);
+        overflow-y: scroll;
+    }
     #areaList{
         font-size: 18px;
         display: flex;
